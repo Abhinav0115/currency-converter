@@ -10,7 +10,7 @@ const CurrenciesDropdown = ({
     handleFavorite,
 }) => {
     // Check if the current currency is a favorite
-    const isFavorite = (curr) => favorites.includes(curr);
+    const isFavorite = (curr) => favorites?.includes(curr);
 
     return (
         <div
@@ -30,7 +30,7 @@ const CurrenciesDropdown = ({
                     id=""
                     className="w-full border p-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300"
                 >
-                    {favorites.map((currency) => {
+                    {favorites?.map((currency) => {
                         return (
                             <option
                                 className="bg-gray-200 "
@@ -44,7 +44,7 @@ const CurrenciesDropdown = ({
                     })}
                     <hr />
                     {currencies
-                        .filter((fav) => !favorites.includes(fav))
+                        .filter((fav) => !favorites?.includes(fav))
                         .map((currency) => {
                             return (
                                 <option key={currency} value={currency}>

@@ -20,9 +20,7 @@ const CurrencyConvertor = () => {
     const [convertedAmount, setConvertedAmount] = useState(null);
 
     //Favorites state
-    const [favorites, setFavorites] = useState(
-        JSON.parse(localStorage?.getItem("favorites")) || ["USD", "INR"]
-    );
+    const [favorites, setFavorites] = useState([]);
 
     //currencies -> api.frankfurter.app/currencies;
     //fetching currencies
@@ -80,6 +78,13 @@ const CurrencyConvertor = () => {
     };
 
     useEffect(() => {
+        const localFavorites = localStorage.getItem("favorites");
+        if (localFavorites) {
+            setFavorites(JSON.parse(localFavorites));
+        } else {
+            setFavorites(["INR", "USD"]);
+        }
+
         fetchCurrencies();
     }, []);
 
@@ -143,7 +148,7 @@ const CurrencyConvertor = () => {
                     Convert
                 </button>
             </div>
-            {convertedAmount !== null  && (
+            {convertedAmount !== null && (
                 <div className="mt-4 text-lg text-emerald-600 font-medium text-center">
                     Converted Amount :{" "}
                     <span className="font-semibold">{convertedAmount}</span>
